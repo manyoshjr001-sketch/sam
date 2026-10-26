@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Music Sabbath | MNUSDA Church</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            background: #071014;
+            color: white;
+            padding: 20px 5%;
+        }
+
+        .church-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .church-logo {
+            width: 85px;
+            height: 75px;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            font-size: 42px;
+        }
+
+        .church-name h1 {
+            font-family: Georgia, serif;
+            font-size: 30px;
+            line-height: 1.2;
+        }
+
+        .church-name p {
+            font-size: 16px;
+            color: #ddd;
+            margin-top: 5px;
+        }
+
+        /* NAVIGATION */
+        nav {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 12px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: #f2bd36;
+            color: #111;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 420px;
+            padding: 70px 6%;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(0, 0, 0, 0.85),
+                    rgba(0, 0, 0, 0.35)
+                ),
+                url("https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1600&q=85")
+                center/cover no-repeat;
+
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 750px;
+        }
+
+        .hero-content .welcome {
+            color: #f2bd36;
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 35px;
+        }
+
+        .hero-content h2 {
+            font-family: Georgia, serif;
+            font-size: 55px;
+            line-height: 1.15;
+            margin: 10px 0 20px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #f2bd36;
+            color: #111;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        /* GENERAL SECTION */
+        section {
+            padding: 55px 6%;
+        }
+
+        .section-title {
+            font-family: Georgia, serif;
+            font-size: 34px;
+            margin-bottom: 10px;
+            color: #101820;
+        }
+
+        .section-description {
+            color: #555;
+            margin-bottom: 30px;
+            font-size: 17px;
+        }
+
+        /* MUSIC SABBATH EVENT CARD */
+        .event-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-info {
+            padding: 35px;
+        }
+
+        .event-label {
+            display: inline-block;
+            background: #fff0bd;
+            color: #735000;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .event-info h3 {
+            font-family: Georgia, serif;
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .event-info p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .event-details {
+            margin: 25px 0;
+        }
+
+        .event-details p {
+            margin-bottom: 12px;
+            color: #222;
+        }
+
+        .event-photo {
+            min-height: 350px;
+            background:
+                url("https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1000&q=85")
+                center/cover no-repeat;
+        }
+
+        /* AUTOMATIC PHOTO SLIDESHOW */
+        .gallery {
+            background: #101820;
+            color: white;
+        }
+
+        .gallery .section-title {
+            color: white;
+        }
+
+        .gallery .section-description {
+            color: #ddd;
+        }
+
+        .slideshow {
+            position: relative;
+            max-width: 1000px;
+            height: 500px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 15px;
+            background: #222;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide.active {
+            display: block;
+            animation: fadeEffect 1s;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        @keyframes fadeEffect {
+            from {
+                opacity: 0.4;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 35px 25px;
+            background: linear-gradient(
+                transparent,
+                rgba(0, 0, 0, 0.9)
+            );
+            color: white;
+        }
+
+        .slide-caption h3 {
+            font-family: Georgia, serif;
+            font-size: 28px;
+        }
+
+        .slide-caption p {
+            font-size: 16px;
+        }
+
+        /* SLIDESHOW BUTTONS */
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: rgba(0, 0, 0, 0.65);
+            color: white;
+            padding: 15px;
+            font-size: 25px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .slider-button:hover {
+            background: #f2bd36;
+            color: #111;
+        }
+
+        .previous {
+            left: 15px;
+        }
+
+        .next {
+            right: 15px;
+        }
+
+        /* SLIDE INDICATORS */
+        .dots {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            display: inline-block;
+            border-radius: 50%;
+            background: #888;
+            cursor: pointer;
+            border: none;
+        }
+
+        .dot.active {
+            background: #f2bd36;
+        }
+
+        /* INVITATION SECTION */
+        .invitation {
+            text-align: center;
+            background: white;
+        }
+
+        .invitation h2 {
+            font-family: Georgia, serif;
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .invitation p {
+            max-width: 750px;
+            margin: 0 auto 25px;
+            color: #555;
+            font-size: 17px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #071014;
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer .motto {
+            color: #f2bd36;
+        }
+
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 768px) {
+            .church-header {
+                align-items: flex-start;
+            }
+
+            .church-logo {
+                width: 60px;
+                height: 60px;
+                font-size: 32px;
+            }
+
+            .church-name h1 {
+                font-size: 21px;
+            }
+
+            .church-name p {
+                font-size: 13px;
+            }
+
+            nav {
+                gap: 5px;
+            }
+
+            nav a {
+                padding: 10px 13px;
+                font-size: 14px;
+            }
+
+            .hero {
+                padding: 50px 6%;
+                min-height: 350px;
+            }
+
+            .hero-content .welcome {
+                font-size: 27px;
+            }
+
+            .hero-content h2 {
+                font-size: 37px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .event-card {
+                grid-template-columns: 1fr;
+            }
+
+            .event-photo {
+                min-height: 260px;
+                grid-row: 1;
+            }
+
+            .event-info {
+                padding: 25px;
+            }
+
+            .slideshow {
+                height: 330px;
+            }
+
+            .slide-caption h3 {
+                font-size: 22px;
+            }
+
+            .slide-caption p {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .church-name h1 {
+                font-size: 17px;
+            }
+
+            .slideshow {
+                height: 260px;
+            }
+
+            .hero-content h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CHURCH HEADER -->
+    <header>
+        <div class="church-header">
+
+            <div class="church-logo" aria-label="Church logo">
+              <img src="logo.PNG"width="100%" align="left" alt="IMAGE FAILURE">
+  
+            </div>
+
+            <div class="church-name">
+                <h1>MNUSDA CHURCH MUSIC MINISTRY</h1>
+                <p>Dedication • Harmony • Evangelism</p>
+            </div>
+
+        </div>
+
+        <!-- NAVIGATION MENU -->
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#events" class="active">Events</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <span class="welcome">Welcome to our Events</span>
+
+            <h2>MUSIC SABBATH</h2>
+
+            <p>
+                A special day of praise, worship and thanksgiving
+                through music. Come and experience the power of
+                worship as we glorify God together.
+            </p>
+
+            <a href="#events" class="button">
+                Discover Our Event
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- EVENTS SECTION -->
+    <section id="events">
+
+        <h2 class="section-title">Upcoming Church Events</h2>
+
+        <p class="section-description">
+            Join us for fellowship, spiritual growth and uplifting
+            worship experiences.
+        </p>
+
+        <div class="event-card">
+
+            <div class="event-info">
+
+                <span class="event-label">SPECIAL WORSHIP EVENT</span>
+
+                <h3>Music Sabbath</h3>
+
+                <p>
+                    You are warmly invited to our Music Sabbath,
+                    a celebration of God's goodness through
+                    singing, instrumental music and praise.
+                </p>
+
+                <div class="event-details">
+
+                    <!-- EDIT THESE EVENT DETAILS -->
+                    <p><strong>📅 Date:</strong> 31ST OCT 2026</p>
+
+                    <p><strong>🕘 Time:</strong> FROM 8:30AM TO 5:00PM</p>
+
+                    <p><strong>📍 Venue:</strong>
+                        Mama Ngina University TC 009
+                    </p>
+
+                    <p><strong>🎵 Activities:</strong>
+                        Choir performances, special songs,
+                        Music Evangelism & Many more.
+                    </p>
+
+                </div>
+
+                <a href="#contact" class="button">
+                    Join Us for Worship
+                </a>
+
+            </div>
+
+            <div class="event-photo"
+                 role="img"
+                 aria-label="Music and worship event">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- AUTOMATICALLY CHANGING PHOTO GALLERY -->
+    <section class="gallery" id="gallery">
+
+        <h2 class="section-title">Music Sabbath Gallery</h2>
+
+        <p class="section-description">
+            Moments of praise, worship and fellowship.
+            Enjoy our music and worship slideshow.
+        </p>
+
+        <div class="slideshow" id="slideshow">
+
+            <!-- SLIDE 1 -->
+            <div class="slide active">
+
+                <img
+                    src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1400&q=85"
+                    alt="Singer performing on stage">
+
+                <div class="slide-caption">
+                    <h3>Music in Worship</h3>
+                    <p>Using our gifts to glorify God.</p>
+                </div>
+
+            </div>
+
+
+            <!-- SLIDE 2 -->
+            <div class="slide">
+                              <img
+                    src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=1400&q=85"
+                    alt="Music event audience">
+
+   
+               
+                <div class="slide-caption">
+                    <h3>United in Worship</h3>
+                    <p>One family, one faith and one song.</p>
+                </div>
+
+            </div>
+
+
+            <!-- SLIDE 3 -->
+            <div class="slide">
+<img src="WAT1.JPEG" alt="Music Sabbath">
+
+                <div class="slide-caption">
+                    <h3>Himntica Acapella</h3>
+                    <p>Guest Choir.</p>
+                </div>
+
+            </div>
+
+
+            <!-- SLIDE 4 -->
+            <div class="slide">
+
+               <img src="WAT.JPEG" alt="Music Sabbath">
+
+                <div class="slide-caption">
+                    <h3>Heavenly Band Ministers</h3>
+                    <p>Guest Choir.</p>
+                </div>
+
+            </div>
+
+
+            <!-- PREVIOUS AND NEXT BUTTONS -->
+            <button
+                class="slider-button previous"
+                onclick="changeSlide(-1)"
+                aria-label="Previous photo">
+                &#10094;
+            </button>
+
+            <button
+                class="slider-button next"
+                onclick="changeSlide(1)"
+                aria-label="Next photo">
+                &#10095;
+            </button>
+
+        </div>
+
+
+        <!-- SLIDE DOTS -->
+        <div class="dots">
+
+            <button class="dot active"
+                    onclick="showSlide(0)"
+                    aria-label="Show photo 1"></button>
+
+            <button class="dot"
+                    onclick="showSlide(1)"
+                    aria-label="Show photo 2"></button>
+
+            <button class="dot"
+                    onclick="showSlide(2)"
+                    aria-label="Show photo 3"></button>
+
+            <button class="dot"
+                    onclick="showSlide(3)"
+                    aria-label="Show photo 4"></button>
+
+        </div>
+
+    </section>
+
+
+    <!-- INVITATION SECTION -->
+    <section class="invitation">
+
+        <h2>Come and Worship With Us</h2>
+
+        <p>
+            Music is a beautiful way to express our love and gratitude
+            to God. Invite your friends and family to join us for
+            this special Sabbath of praise, worship and fellowship.
+        </p>
+
+        <a href="#contact" class="button">
+            We Welcome You
+        </a>
+
+    </section>
+
+
+    <!-- CONTACT SECTION -->
+    <footer id="contact">
+
+        <h2>Mama Ngina University SDA Church</h2>
+
+        <p>Worship • Grow • Serve</p>
+
+        <p>
+            For information about Music Sabbath, contact the church
+            administration.
+        </p>
+        <p>
+		<marquee direction="left">
+			<font color="white">
+			📞 +254 111 480 999	
+			</font>
+		</marquee>
+        </p>
+
+
+        <p class="motto">
+            "Let everything that hath breath praise the Lord."
+            — Psalm 150:6
+        </p>
+
+        <br>
+
+        <p>&copy; 2022 MNUSDA Church.</p>
+
+        <p>All rights reserved.</p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT FOR AUTOMATIC SLIDESHOW -->
+    <script>
+
+        let currentSlide = 0;
+
+        const slides = document.querySelectorAll(".slide");
+        const dots = document.querySelectorAll(".dot");
+
+        let slideTimer;
+
+        // DISPLAY A PARTICULAR SLIDE
+        function showSlide(index) {
+
+            // Hide all slides
+            slides.forEach(function(slide) {
+                slide.classList.remove("active");
+            });
+
+            // Remove active state from all dots
+            dots.forEach(function(dot) {
+                dot.classList.remove("active");
+            });
+
+            // Keep the index within the valid range
+            currentSlide = (index + slides.length) % slides.length;
+
+            // Display the selected slide
+            slides[currentSlide].classList.add("active");
+
+            // Highlight the selected dot
+            dots[currentSlide].classList.add("active");
+
+        }
+
+
+        // MOVE TO NEXT OR PREVIOUS PHOTO
+        function changeSlide(direction) {
+
+            showSlide(currentSlide + direction);
+
+            // Restart the timer after manual navigation
+            startSlideshow();
+
+        }
+
+
+        // AUTOMATICALLY CHANGE PHOTOS EVERY 3 SECONDS
+        function startSlideshow() {
+
+            clearInterval(slideTimer);
+
+            slideTimer = setInterval(function() {
+
+                showSlide(currentSlide + 1);
+
+            }, 3000);
+
+        }
+
+
+        // PAUSE AUTOMATIC SLIDESHOW WHEN THE MOUSE IS OVER IT
+        const slideshow = document.getElementById("slideshow");
+
+        slideshow.addEventListener("mouseenter", function() {
+            clearInterval(slideTimer);
+        });
+
+        slideshow.addEventListener("mouseleave", function() {
+            startSlideshow();
+        });
+
+
+        // START THE SLIDESHOW WHEN THE PAGE LOADS
+        startSlideshow();
+
+    </script>
+
+</body>
+</html>

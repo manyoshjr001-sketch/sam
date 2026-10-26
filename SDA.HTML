@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MNUSDA</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --green: #003f35;
+    --dark-green: #002e28;
+    --gold: #ffda45;
+    --cream: #eff7f3;
+    --text: #153b34;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--text);
+    background: white;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: 90%;
+    max-width: 1250px;
+    margin: auto;
+}
+
+/* NAVIGATION */
+
+header {
+    background: var(--dark-green);
+    color: white;
+    padding: 12px 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-symbol {
+    font-size: 40px;
+    color: var(--gold);
+}
+
+.logo h2 {
+    font-size: 21px;
+}
+
+.logo p {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+nav a {
+    font: 12px Arial, sans-serif;
+    padding: 9px 12px;
+    border-radius: 5px;
+}
+
+nav a:hover,
+nav .active {
+    background: var(--gold);
+    color: var(--dark-green);
+}
+
+.give-btn,
+.yellow-btn {
+    background: var(--gold);
+    color: var(--dark-green);
+    padding: 12px 22px;
+    border-radius: 30px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* HERO SECTION */
+
+.hero {
+    height: 300px;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 25, 15, 0.85),
+            rgba(0, 25, 15, 0.2)
+        ),
+        url("images/church.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.hero-content {
+    width: 90%;
+    max-width: 1250px;
+    margin: auto;
+}
+
+.welcome {
+    color: var(--gold);
+    font-size: 40px;
+    font-style: italic;
+}
+
+.hero h1 {
+    font-size: 46px;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* BUTTONS */
+
+.green-btn {
+    display: inline-block;
+    background: var(--green);
+    color: white;
+    padding: 11px 22px;
+    border-radius: 30px;
+    font: bold 12px Arial, sans-serif;
+}
+
+.green-btn:hover {
+    background: #086653;
+}
+
+/* WORSHIP SERVICES */
+
+.services {
+    padding: 22px 0;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: 1.7fr repeat(3, 1fr);
+    gap: 18px;
+    align-items: stretch;
+}
+
+.services h2,
+.about h2,
+.section-title {
+    font-size: 26px;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.service-intro p {
+    font: 14px/1.6 Arial, sans-serif;
+    margin-bottom: 15px;
+}
+
+.service-card {
+    background: var(--cream);
+    border-radius: 8px;
+    text-align: center;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.service-icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.service-card h3 {
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.service-card p {
+    font: 12px Arial, sans-serif;
+    margin-bottom: 10px;
+}
+
+.service-card strong {
+    font: bold 12px Arial, sans-serif;
+}
+
+
+
+
+/* EVENTS */
+
+.events {
+    padding: 20px 0;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.section-heading h2 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.section-heading p {
+    font: 12px Arial, sans-serif;
+}
+
+.small-btn {
+    background: var(--green);
+    color: white;
+    padding: 10px 17px;
+    border-radius: 25px;
+    font: 11px Arial, sans-serif;
+}
+
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.event-card {
+    border: 1px solid #e4e9e5;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px #00000008;
+}
+
+.event-card img {
+    width: 100%;
+    height: 85px;
+    object-fit: cover;
+    display: block;
+}
+
+.event-details {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 12px;
+}
+
+.date {
+    background: var(--cream);
+    padding: 8px;
+    min-width: 45px;
+    text-align: center;
+    font: 10px Arial, sans-serif;
+}
+
+.date strong {
+    display: block;
+    font-size: 16px;
+}
+
+.event-info h3 {
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.event-info p {
+    font: 11px/1.5 Arial, sans-serif;
+}
+
+/* BIBLE VERSE */
+
+.verse {
+    min-height: 100px;
+    padding: 20px;
+    background:
+        linear-gradient(rgba(0, 40, 40, 0.35),
+                        rgba(0, 40, 40, 0.35)),
+        url("images/sunset.jpg") center/cover no-repeat;
+    color: white;
+    text-align: center;
+    display: grid;
+    place-items: center;
+}
+
+.verse blockquote {
+    font-size: 17px;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+.verse cite {
+    display: block;
+    margin-top: 8px;
+    color: var(--gold);
+    font: 12px Arial, sans-serif;
+}
+
+/* FOOTER */
+
+footer {
+    background: var(--dark-green);
+    color: white;
+    padding: 20px 0;
+    font: 12px Arial, sans-serif;
+}
+
+.footer-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 11px;
+}
+
+.tagline {
+    color: var(--gold);
+    font-style: italic;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 900px) {
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .service-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .service-intro {
+        grid-column: 1 / -1;
+    }
+
+    .ministry {
+        padding: 0 8px;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 92%;
+    }
+
+    .navbar {
+        justify-content: center;
+    }
+
+    .logo {
+        margin-right: auto;
+    }
+
+    nav {
+        width: 100%;
+        justify-content: center;
+    }
+
+    nav a {
+        padding: 8px;
+        font-size: 11px;
+    }
+
+    .hero {
+        height: 330px;
+        background-position: 60% center;
+    }
+
+    .welcome {
+        font-size: 30px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .service-intro {
+        grid-column: 1 / -1;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .about-grid img {
+        height: 200px;
+    }
+
+    .ministry-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px 0;
+    }
+
+    .ministry {
+        border: none;
+    }
+
+    .ministry:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .section-heading h2 {
+        font-size: 21px;
+    }
+
+    .event-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .event-card img {
+        height: 130px;
+    }
+
+    .verse blockquote {
+        font-size: 14px;
+    }
+
+    .lower-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .footer-info {
+        flex-direction: column;
+    }
+
+    .copyright {
+        text-align: left;
+        line-height: 1.8;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION BAR -->
+
+<header>
+    <div class="container navbar">
+
+        <a href="#home" class="logo">
+				<img src="logo.PNG"width="10%" align="left" alt="IMAGE FAILURE">
+                                            <div>
+                <h2>MAMA NGINA UNIVERSITY SDA CHURCH</h2>
+                <p>Worship • Grow • Serve</p>
+            </div>
+        </a>
+
+        <nav>
+            <a class="active" href="#home">Home</a>
+            <a href="#events">Events</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+    </div>
+</header>
+
+<!-- HERO SECTION -->
+
+<section class="hero" id="home">
+    <div class="hero-content">
+
+        <span class="welcome">Welcome to</span>
+
+        <h1>MNUSDA CHURCH</h1>
+
+        <p>
+            A place of worship, hope, love and spiritual growth.<br>
+            Join us as we grow together in Christ.
+        </p>
+
+        <a href="#services" class="yellow-btn">
+            👥 Join Us for Worship
+        </a>
+
+    </div>
+</section>
+
+<!-- WORSHIP SERVICES -->
+
+<section class="services" id="services">
+    <div class="container service-grid">
+
+        <div class="service-intro">
+            <h2>Our Worship Services</h2>
+
+            <p>
+                Come and worship with us. We look forward<br>
+                to fellowshipping with you and your family.
+            </p>
+
+            <a href="#events" class="green-btn">
+                View All Services →
+            </a>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">📖</div>
+            <h3>Sabbath School</h3>
+            <p>Sabbath</p>
+            <strong>8:30 AM – 10:00 AM</strong>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">👥</div>
+            <h3>Divine Service</h3>
+            <p>Sabbath</p>
+            <strong>10:00 AM – 1:00 PM</strong>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">📖</div>
+            <h3>Bible Study</h3>
+            <p>Sabbath</p>
+            <strong>2:30 PM – 5:00 PM</strong>
+        </div>
+
+    </div>
+</section>
+<!-- UPCOMING EVENTS -->
+<section class="events" id="events">
+    <div class="container">
+
+        <div class="section-heading">
+            <div>
+                <h2>Upcoming Events</h2>
+                <p>
+                    Stay informed about our church programs and activities.
+                </p>
+            </div>
+
+           <a href="Events.html"class="small-btn">
+                View All Events →
+                
+            </a>
+        </div>
+
+        <div class="event-grid">
+
+            <article class="event-card">
+                <img src="MSB.PNG" alt="Music Sabbath">
+
+                <div class="event-details">
+                    <div class="date">
+                        OCT
+                        <strong>31</strong>
+                    </div>
+
+                    <div class="event-info">
+                        <h3>MUSIC SABBATH</h3>
+                        <p>
+                            Sabbath<br>
+                            8:30 AM – 5:00 PM
+                        </p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="event-card">
+                <img src="images/camp.jpg" alt="Prayer Week">
+
+                <div class="event-details">
+                    <div class="date">
+                        NOV
+                        <strong>7–14</strong>
+                    </div>
+
+                    <div class="event-info">
+                        <h3>WOSE & PRAYER AND FASTING</h3>
+                        <p>
+                            Sunday – Sat<br>
+                            5:30 PM – 6:30 PM
+                        </p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="event-card">
+                <img src="images/prayer.jpg" alt="Chariots Sabbath">
+
+                <div class="event-details">
+                    <div class="date">
+                        NOV
+                        <strong>21</strong>
+                    </div>
+
+                    <div class="event-info">
+                        <h3>CHARIOTS SABBATH</h3>
+                        <p>
+                            Sabbath<br>
+                            8:30 AM – 5:00 PM
+                        </p>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- BIBLE VERSE BANNER -->
+
+<section class="verse">
+    <div>
+        <blockquote>
+            “For where two or three are gathered together in my name,<br>
+            there am I in the midst of them.”
+        </blockquote>
+
+        <cite>Matthew 18:20 (KJV)</cite>
+    </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer id="contact">
+    <div class="container">
+
+        <div class="footer-info">
+            <span>📍Mutomo(NgedaWard),Gatundu Sub-County</span>
+            <span>📞 +254 111 480 999</span>
+            <span>✉ sdagroup@mnu.ac.ke</span>
+        </div>
+
+        <div class="copyright">
+            © 2022 MNUSDA Church. All rights reserved.
+            <span class="tagline">Together in Christ</span>
+        </div>
+
+    </div>
+</footer>
+
+</body>
+</html>
